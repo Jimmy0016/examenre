@@ -28,8 +28,10 @@ jobs:
         pip install -r requirements.txt
 
     # ✅ Ejecutar pruebas
-    - name: "Run tests"
-      run: pytest tests
+    - name: Run tests
+      run: |
+        export PYTHONPATH=$PYTHONPATH:$(pwd)
+        pytest tests
 
     # ✅ Linter para calidad de código
     - name: "Run lint"

@@ -29,7 +29,7 @@ jobs:
 
     # ✅ Ejecutar pruebas
     - name: "Run tests"
-      run: pytest
+      run: test
 
     # ✅ Linter para calidad de código
     - name: "Run lint"

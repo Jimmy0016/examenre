@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  jordy:
+    image: jordymg:1.0.1
+    build: .
+    deploy:
+      replicas: 1
+      labels:
+        - "traefik.enable=true"
+        - "traefik.http.routers.jordy.entrypoints=http"
+        - "traefik.http.routers.jordy.rule=Host(`jordy.byronrm.com`)"
+        - "traefik.http.middlewares.jordy-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.jordy.middlewares=jordy-https-redirect"
+        - "traefik.http.routers.jordy-secure.entrypoints=https"
+        - "traefik.http.routers.jordy-secure.rule=Host(`jordy.byronrm.com`)"
+        - "traefik.http.routers.jordy-secure.tls=true"
+        - "traefik.http.routers.jordy-secure.tls.certresolver=http"
+        - "traefik.http.routers.jordy-secure.service=jordy"
+        - "traefik.http.services.jordy.loadbalancer.server.port=80"
+        - "traefik.docker.network=traefik-public"
+    networks:
+      - traefik-public
+
+networks:
+  traefik-public:
+    external: true

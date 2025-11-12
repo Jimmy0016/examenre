@@ -8,4 +8,4 @@ def hello():
 
 if __name__ == "__main__":
     # Escucha en todas las interfaces (necesario para Docker)
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host="0.0.0.0", port=80)

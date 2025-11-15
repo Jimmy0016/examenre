@@ -220,4 +220,4 @@ Pasos Siguientes (Despliegue Continuo)
 
 Los archivos Makefile y stack.yml que tienes sugieren el siguiente paso lógico: el Despliegue Continuo.
 
-Un pipeline más avanzado podría añadir un segundo job que, al terminarse el build con éxito, se conecte a un servidor (vía SSH) y ejecute make deploy. Este comando usaría el stack.yml para decirle a Docker Swarm: "Oye, hay una nueva versión :latest de la imagen, descárgala y actualiza el servicio".
+Un pipeline más avanzado podría añadir un segundo job que, al terminarse el build con éxito, se conecte a un servidor (vía SSH) y ejecute make deploy. Este comando usaría el stack.yml para decirle a Docker Swarm: "Oye, hay una nueva versión :latest de la imagen, descárgala y actualiza el servicio"

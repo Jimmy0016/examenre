@@ -4,8 +4,8 @@ Este repositorio es un ejemplo práctico de un pipeline de Integración Continua
 
 El objetivo es automatizar el proceso desde que un desarrollador sube un cambio (push) hasta que se genera un artefacto listo para desplegar (un "Package", en este caso, una imagen de Docker).
 
-Estructura del Repositorio
-
+ Estructura del Repositorio
+```
 .
 ├── .github/workflows/
 │   └── ci.yml             # ⬅️ Define todo el pipeline de CI/CD
@@ -17,7 +17,7 @@ Estructura del Repositorio
 ├── README.md              # (Este archivo)
 ├── requirements.txt       # ⬅️ Dependencias de Python
 └── stack.yml              # (Opcional) Archivo de despliegue para Docker Swarm
-
+``` 
 
 ¿Qué es CI/CD?
 

@@ -51,3 +51,17 @@ jobs:
       with:
         push: true
         tags: ghcr.io/jordysz/jordy_sanchez_taller:latest
+     
+    - name: pruebas de shh con el servidor
+      uses: appleboy/scp-action@v1
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        port: ${{ secrets.VPS_SSH_PORT }}
+        user: ${{ secrets.VPS_USER }}
+        password: ${{ secrets.VPS_PASSWORD }}
+        script: |
+            echo "conexion exitosa desde Githud Actions"
+            pwd
+            whoami
+            hostname
+            uptime

@@ -75,3 +75,29 @@ jobs:
         password: ${{ secrets.VPS_PASSWORD }}
         source: "stack.yml"
         target: "/home/${{secrets.VPS_USER}}/AUTOMATIZAR"
+   
+    - name: deploy del servicio
+      uses: appleboy/ssh-action@v1
+      with:
+        host: ${{ secrets.VPS_HOST }}
+        port: ${{ secrets.VPS_SSH_PORT }}
+        username: ${{ secrets.VPS_USER }}
+        password: ${{ secrets.VPS_PASSWORD }}
+        script: |
+            echo "deloyando los servicio"
+            cd ~/AUTOMATIZAR
+
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin
+            docker pull ghcr.io/jordysz/jordy_sanchez_taller:latest
+
+            # Borrar el stack SIEMPRE (si no existe no falla)
+            docker stack rm doraemon || true
+
+            # Timpo de espera hasta que bajen los servicios
+            sleep 40
+
+            docker stack deploy --with-registry-auth -c stack.yml doraemon
+
+            sleep 30
+            # Ver los servicios
+            docker ps 

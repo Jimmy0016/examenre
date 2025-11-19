@@ -53,7 +53,7 @@ jobs:
         tags: ghcr.io/jordysz/jordy_sanchez_taller:latest
      
     - name: pruebas de shh con el servidor
-      uses: appleboy/scp-action@v1
+      uses: appleboy/ssh-action@v1
       with:
         host: ${{ secrets.VPS_HOST }}
         port: ${{ secrets.VPS_SSH_PORT }}

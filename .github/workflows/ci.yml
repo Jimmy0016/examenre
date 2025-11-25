@@ -77,7 +77,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
         source: "stack.yml"
-        target: "/home/${{ secrets.VPS_USER }}/AUTOMATIZAR"
+        target: "/home/${{ secrets.VPS_USER }}/final_sanchez"
     
     #  Despliegue en Docker Swarm
     - name: Deploy del servicio
@@ -97,12 +97,14 @@ jobs:
             
             # Descargar la imagen explícitamente
             docker pull ghcr.io/jordysz/sanchez_final:1.0.5
-            
+
+            docker stack rm doreamon || true
+            sleep 10
             # Despliegue
             docker stack deploy --with-registry-auth --resolve-image always -c stack.yml doraemon
             
             echo "Despliegue enviado a Swarm."
             
-            docker image prune -f
-            sleep 10
+          
+       
             docker service ls

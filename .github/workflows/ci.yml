@@ -50,7 +50,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/jordysz/SANCHEZ_EXAMEN_FINAL:laste
+        tags: ghcr.io/jordysz/sanchez_examen_final:latest
       
     # ✅ Verificar conexión SSH
     - name: Pruebas de SSH con el servidor
@@ -92,7 +92,7 @@ jobs:
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin
             
             # Descargar la imagen explícitamente
-            docker pull ghcr.io/jordysz/jordy_sanchez_taller:latest
+            docker pull ghcr.io/jordysz/sanchez_examen_final:latest
             
             # 🚀 DESPLIEGUE INTELIGENTE (Rolling Update)
             # No borramos el stack. Actualizamos sobre el existente.

@@ -33,7 +33,7 @@ jobs:
         pip install -r requirements.txt
         pip install pytest
 
-    # ✅ Ejecutar pruebas
+    #  Ejecutar pruebas
     - name: Run tests
       run: |
         export PYTHONPATH=$PYTHONPATH:$(pwd)

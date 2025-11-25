@@ -6,6 +6,11 @@ on:
       - Jordy
   pull_request:
 
+# 👇 Esto ayuda a dar permisos, pero el cambio clave está más abajo
+permissions:
+  contents: read
+  packages: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,7 +26,7 @@ jobs:
       with:
         python-version: "3.10"
 
-    # ✅ Instalar dependencias (Sin flake8)
+    # ✅ Instalar dependencias
     - name: "Install dependencies"
       run: |
         python -m pip install --upgrade pip
@@ -34,15 +39,14 @@ jobs:
         export PYTHONPATH=$PYTHONPATH:$(pwd)
         pytest tests
 
-    # ❌ ELIMINADO: Paso de Linter (flake8) para evitar el error 127
-
-    # ✅ Login en GitHub Container Registry (Local Runner)
+    # ✅ Login en GitHub Container Registry
+    # 🔴 AQUÍ ESTABA EL ERROR: Usamos GHCR_PAT en vez de GITHUB_TOKEN
     - name: "Login to GHCR"
       uses: docker/login-action@v2
       with:
         registry: ghcr.io
         username: ${{ github.actor }}
-        password: ${{ secrets.GITHUB_TOKEN }}
+        password: ${{ secrets.GHCR_PAT }}  # <--- CAMBIO IMPORTANTE
 
     # ✅ Construir y subir la imagen Docker
     - name: "Build and push Docker image"
@@ -62,7 +66,7 @@ jobs:
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
             echo "✅ Conexión exitosa desde GitHub Actions"
-            mkdir -p ~/AUTOMATIZAR  # Asegura que la carpeta exista
+            mkdir -p ~/AUTOMATIZAR
 
     # ✅ Copiar stack.yml al servidor
     - name: Pasar el stack.yml al servidor
@@ -75,7 +79,7 @@ jobs:
         source: "stack.yml"
         target: "/home/${{ secrets.VPS_USER }}/AUTOMATIZAR"
     
-    # ✅ Despliegue en Docker Swarm (Sin downtime)
+    # ✅ Despliegue en Docker Swarm
     - name: Deploy del servicio
       uses: appleboy/ssh-action@v1
       with:
@@ -88,21 +92,17 @@ jobs:
             
             echo "🔄 Iniciando despliegue..."
             
-            # Login en el servidor remoto para poder bajar la imagen privada
+            # Login en el servidor remoto
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin
             
             # Descargar la imagen explícitamente
             docker pull ghcr.io/jordysz/sanchez_final:latest
             
-            # 🚀 DESPLIEGUE INTELIGENTE (Rolling Update)
-            # No borramos el stack. Actualizamos sobre el existente.
-            # --resolve-image always: Obliga a usar la nueva imagen descargada aunque se llame igual
+            # 🚀 Despliegue
             docker stack deploy --with-registry-auth --resolve-image always -c stack.yml doraemon
             
             echo "✅ Despliegue enviado a Swarm."
             
-            # Limpieza de imágenes viejas para no llenar el disco del VPS
             docker image prune -f
-            
             sleep 10
             docker service ls

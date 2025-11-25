@@ -6,7 +6,7 @@ on:
       - Jordy
   pull_request:
 
-# 👇 Esto ayuda a dar permisos, pero el cambio clave está más abajo
+#  Esto ayuda a dar permisos, pero el cambio clave está más abajo
 permissions:
   contents: read
   packages: write
@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    # ✅ Descargar el código del repositorio
+    #  Descargar el código del repositorio
     - name: "Checkout repository"
       uses: actions/checkout@v3
 
@@ -65,7 +65,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
-            echo "✅ Conexión exitosa desde GitHub Actions"
+            echo " Conexión exitosa desde GitHub Actions"
             mkdir -p ~/AUTOMATIZAR
 
     #  Copiar stack.yml al servidor

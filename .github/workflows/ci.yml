@@ -90,7 +90,7 @@ jobs:
         script: |
             cd ~/AUTOMATIZAR
             
-            echo "🔄 Iniciando despliegue..."
+            echo " Iniciando despliegue..."
             
             # Login en el servidor remoto
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin

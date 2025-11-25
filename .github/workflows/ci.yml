@@ -101,7 +101,7 @@ jobs:
             # 🚀 Despliegue
             docker stack deploy --with-registry-auth --resolve-image always -c stack.yml doraemon
             
-            echo "✅ Despliegue enviado a Swarm."
+            echo "Despliegue enviado a Swarm."
             
             docker image prune -f
             sleep 10

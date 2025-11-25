@@ -5,7 +5,10 @@ on:
     branches:
       - Jordy
   pull_request:
-
+# 👇👇 AGREGA ESTE BLOQUE AQUÍ 👇👇
+permissions:
+  contents: read
+  packages: write
 jobs:
   build:
     runs-on: ubuntu-latest

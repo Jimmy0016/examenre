@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   jordy:
-    image: sanchez_final:1.0.5
+    image: ghcr.io/jordysz/sanchez_final:1.0.5
     build: .
     deploy:
       replicas: 1

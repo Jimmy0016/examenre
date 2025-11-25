@@ -1,24 +1,20 @@
 import pytest
 from app import app
 
-
 @pytest.fixture
 def client():
-    # Configuramos la app en modo test
+    # Prepara la aplicación para pruebas
     app.config['TESTING'] = True
     with app.test_client() as client:
         yield client
 
-
-def test_hello_status_code(client):
-    """Verifica que la ruta raíz devuelve código 200 OK."""
+def test_home_status_code(client):
+    """Verifica que la página carga (código 200)"""
     response = client.get('/')
     assert response.status_code == 200
 
-
-def test_hello_content(client):
-    """Verifica que el HTML contiene el título esperado."""
+def test_home_content(client):
+    """Verifica que aparece el texto correcto"""
     response = client.get('/')
-    # Verificamos que 'Hola Mundo' esté en los datos de respuesta
+    # Buscamos la palabra clave en el HTML devuelto
     assert b"Hola Mundo" in response.data
-# W292: Asegúrate de presionar "Enter" aquí para dejar una línea vacía final

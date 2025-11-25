@@ -68,7 +68,7 @@ jobs:
             echo "✅ Conexión exitosa desde GitHub Actions"
             mkdir -p ~/AUTOMATIZAR
 
-    # ✅ Copiar stack.yml al servidor
+    #  Copiar stack.yml al servidor
     - name: Pasar el stack.yml al servidor
       uses: appleboy/scp-action@v1
       with:

@@ -48,7 +48,7 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GHCR_PAT }}  # <--- CAMBIO IMPORTANTE
 
-    # ✅ Construir y subir la imagen Docker
+    # Construir y subir la imagen Docker
     - name: "Build and push Docker image"
       uses: docker/build-push-action@v4
       with:

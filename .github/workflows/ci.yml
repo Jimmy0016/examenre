@@ -56,7 +56,7 @@ jobs:
         push: true
         tags: ghcr.io/jordysz/sanchez_final:1.0.5
       
-    # ✅ Verificar conexión SSH
+    # Verificar conexión SSH
     - name: Pruebas de SSH con el servidor
       uses: appleboy/ssh-action@v1
       with:

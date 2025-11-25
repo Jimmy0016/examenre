@@ -54,7 +54,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/jordysz/sanchez_final:latest
+        tags: ghcr.io/jordysz/sanchez_final:1.0.5
       
     # ✅ Verificar conexión SSH
     - name: Pruebas de SSH con el servidor
@@ -79,7 +79,7 @@ jobs:
         source: "stack.yml"
         target: "/home/${{ secrets.VPS_USER }}/AUTOMATIZAR"
     
-    # ✅ Despliegue en Docker Swarm
+    #  Despliegue en Docker Swarm
     - name: Deploy del servicio
       uses: appleboy/ssh-action@v1
       with:
@@ -96,7 +96,7 @@ jobs:
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin
             
             # Descargar la imagen explícitamente
-            docker pull ghcr.io/jordysz/sanchez_final:latest
+            docker pull ghcr.io/jordysz/sanchez_final:1.0.5
             
             # Despliegue
             docker stack deploy --with-registry-auth --resolve-image always -c stack.yml doraemon

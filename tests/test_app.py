@@ -21,3 +21,4 @@ def test_hello_content(client):
     response = client.get('/')
     # Verificamos que 'Hola Mundo' esté en los datos de respuesta
     assert b"Hola Mundo" in response.data
+# W292: Asegúrate de presionar "Enter" aquí para dejar una línea vacía final

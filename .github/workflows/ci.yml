@@ -98,7 +98,7 @@ jobs:
             # Descargar la imagen explícitamente
             docker pull ghcr.io/jordysz/sanchez_final:latest
             
-            # 🚀 Despliegue
+            # Despliegue
             docker stack deploy --with-registry-auth --resolve-image always -c stack.yml doraemon
             
             echo "Despliegue enviado a Swarm."

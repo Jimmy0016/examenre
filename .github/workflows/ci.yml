@@ -34,11 +34,11 @@ jobs:
         pip install pytest
 
     #  Ejecutar 
-    - name: Run tests
+    - name: "Run tests"
       run: |
-        export PYTHONPATH=$PYTHONPATH:$(pwd)
-        pytest_tests
-  
+       echo ">>> Ejecutando pruebas con PyTest..."
+       export PYTHONPATH=$PYTHONPATH:$(pwd)
+       pytest -v --maxfail=1
 
     # Login en GitHub Container Registry
     # AQUÍ ESTABA EL ERROR: Usamos GHCR_PAT en vez de GITHUB_TOKEN

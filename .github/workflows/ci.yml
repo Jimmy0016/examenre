@@ -3,7 +3,7 @@ name: "CI/CD Pipeline"
 on:
   push:
     branches:
-      - Jordy
+      - espinoza
   pull_request:
 
 #  Esto ayuda a dar permisos, pero el cambio clave está más abajo
@@ -51,7 +51,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/jordysz/sanchez_final:1.0.5
+        tags: ghcr.io/jimmy0016/jimmy:1.0.5
       
     # Verificar conexión SSH
     - name: Pruebas de SSH con el servidor
@@ -74,7 +74,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
         source: "stack.yml"
-        target: "/home/${{ secrets.VPS_USER }}/final_sanchez"
+        target: "/home/${{ secrets.VPS_USER }}/recuperacion"
     
     #  Despliegue en Docker Swarm
     - name: Deploy del servicio
@@ -85,7 +85,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
-            cd ~/final_sanchez
+            cd ~/recuperacion
             
             echo " Iniciando despliegue..."
             
@@ -93,12 +93,12 @@ jobs:
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin
             
             # Descargar la imagen explícitamente
-            docker pull ghcr.io/jordysz/sanchez_final:1.0.5
+            docker pull ghcr.io/jimmy0016/jimmy:1.0.5
 
-            docker stack rm doreamon || true
+            docker stack rm rugal || true
             sleep 10
             # Despliegue
-            docker stack deploy --with-registry-auth --resolve-image always -c stack.yml doraemon
+            docker stack deploy --with-registry-auth --resolve-image always -c stack.yml rugal
             
             echo "Despliegue enviado a Swarm."
             

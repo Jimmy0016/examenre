@@ -1,23 +1,23 @@
 version: "3.8"
 
 services:
-  jordy:
-    image: ghcr.io/jordysz/sanchez_final:1.0.5
+  jimmy:
+    image: ghcr.io/jimmy0016/jimmy:1.0.5
     build: .
     deploy:
       replicas: 1
       labels:
         - "traefik.enable=true"
-        - "traefik.http.routers.jordy.entrypoints=http"
-        - "traefik.http.routers.jordy.rule=Host(`jordy.byronrm.com`)"
-        - "traefik.http.middlewares.jordy-https-redirect.redirectscheme.scheme=https"
-        - "traefik.http.routers.jordy.middlewares=jordy-https-redirect"
-        - "traefik.http.routers.jordy-secure.entrypoints=https"
-        - "traefik.http.routers.jordy-secure.rule=Host(`jordy.byronrm.com`)"
-        - "traefik.http.routers.jordy-secure.tls=true"
-        - "traefik.http.routers.jordy-secure.tls.certresolver=http"
-        - "traefik.http.routers.jordy-secure.service=jordy"
-        - "traefik.http.services.jordy.loadbalancer.server.port=80"
+        - "traefik.http.routers.jimmy.entrypoints=http"
+        - "traefik.http.routers.jimmy.rule=Host(`jimmy.byronrm.com`)"
+        - "traefik.http.middlewares.jimmy-https-redirect.redirectscheme.scheme=https"
+        - "traefik.http.routers.jimmy.middlewares=jimmy-https-redirect"
+        - "traefik.http.routers.jimmy-secure.entrypoints=https"
+        - "traefik.http.routers.jimmy-secure.rule=Host(`jimmy.byronrm.com`)"
+        - "traefik.http.routers.jimmy-secure.tls=true"
+        - "traefik.http.routers.jimmy-secure.tls.certresolver=http"
+        - "traefik.http.routers.jimmy-secure.service=jimmy"
+        - "traefik.http.services.jimmy.loadbalancer.server.port=80"
         - "traefik.docker.network=traefik-public"
     networks:
       - traefik-public

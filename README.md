@@ -40,13 +40,13 @@ name: "CI/CD Pipeline"
 on:
   push:
     branches:
-      - Jordy
+      - jimmy
   pull_request:
 
 
 name: El nombre del flujo de trabajo que aparecerá en la pestaña "Actions" de GitHub.
 
-on: Define los disparadores (triggers). Este pipeline se ejecutará automáticamente cada vez que alguien haga un push a la rama Jordy o cuando se cree un pull_request.
+on: Define los disparadores (triggers). Este pipeline se ejecutará automáticamente cada vez que alguien haga un push a la rama jimmy o cuando se cree un pull_request.
 
 Fase 1: El Trabajo de build (CI)
 
@@ -165,7 +165,7 @@ Este es el paso final de nuestro proceso: la construcción y publicación del pa
       uses: docker/build-push-action@v4
       with:
         push: true
-        tags: ghcr.io/jordysz/jordy_sanchez_taller:latest
+        tags: ghcr.io/jimmysz/jimmy_sanchez_taller:latest
 
 
 docker/build-push-action: Esta Action orquesta todo el proceso de docker build y docker push.
@@ -176,9 +176,9 @@ tags: Es el nombre completo de nuestra imagen (nuestro paquete).
 
 ghcr.io: El registro.
 
-jordysz: El nombre de usuario o propietario.
+jimmysz: El nombre de usuario o propietario.
 
-jordy_sanchez_taller: El nombre de la imagen (paquete).
+jimmy_sanchez_taller: El nombre de la imagen (paquete).
 
 :latest: La etiqueta (versión) de la imagen.
 
@@ -212,7 +212,7 @@ Al final de este pipeline:
 
 (CI) Hemos verificado que el código nuevo es de alta calidad y no rompe ninguna funcionalidad existente.
 
-(CD) Hemos creado un paquete (la imagen Docker ghcr.io/jordysz/jordy_sanchez_taller:latest) que contiene nuestra aplicación y todas sus dependencias, listo para ser ejecutado en cualquier lugar.
+(CD) Hemos creado un paquete (la imagen Docker ghcr.io/jimmysz/jimmy_sanchez_taller:latest) que contiene nuestra aplicación y todas sus dependencias, listo para ser ejecutado en cualquier lugar.
 
 Este paquete está ahora almacenado en el GitHub Container Registry, completando el ciclo "de Push a Paquete".
 

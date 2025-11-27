@@ -90,7 +90,7 @@ jobs:
             echo " Iniciando despliegue..."
             
             # Login en el servidor remoto
-            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u JordySZ --password-stdin
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u Jimmy0016 --password-stdin
             
             # Descargar la imagen explícitamente
             docker pull ghcr.io/jimmy0016/jimmy:1.0.5

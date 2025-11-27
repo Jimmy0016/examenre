@@ -17,4 +17,4 @@ def test_home_content(client):
     """Verifica que aparece el texto correcto"""
     response = client.get('/')
     # Buscamos la palabra clave en el HTML devuelto
-    assert b"Hola Mundo" in response.data
+    assert b"JIMMY ESPINOZA SILENCE" in response.data

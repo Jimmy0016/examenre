@@ -33,7 +33,7 @@ def hello():
     </head>
     <body>
         <div class="card">
-            <h1>EXAMEN</h1>
+            <h1>JIMMY</h1>
             <p>Ejecutándose con Flask y probado con Pytest.</p>
         </div>
     </body>

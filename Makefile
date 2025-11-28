@@ -1,5 +1,5 @@
 build:
-	docker build -t espinozamg:1.0.1 .
+	docker build -t jimmy:3.0.0 .
 
 deploy:
 	docker stack deploy --with-registry-auth -c stack.yml rugal

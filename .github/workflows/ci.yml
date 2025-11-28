@@ -3,7 +3,7 @@ name: "CI/CD Pipeline"
 on:
   push:
     branches:
-      - espinoza
+      - jimmy
   pull_request:
 
 #  Esto ayuda a dar permisos, pero el cambio clave está más abajo
@@ -55,7 +55,7 @@ jobs:
       with:
         context: .
         push: true
-        tags: ghcr.io/jimmy0016/jimmy:1.0.5
+        tags: ghcr.io/jimmy0016/jimmy:3.0.0
       
     # Verificar conexión SSH
     - name: Pruebas de SSH con el servidor
@@ -78,7 +78,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
         source: "stack.yml"
-        target: "/home/${{ secrets.VPS_USER }}/recuperacion"
+        target: "/home/${{ secrets.VPS_USER }}/examenre"
     
     #  Despliegue en Docker Swarm
     - name: Deploy del servicio
@@ -89,7 +89,7 @@ jobs:
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
         script: |
-            cd ~/recuperacion
+            cd ~/examenre
             
             echo " Iniciando despliegue..."
             
@@ -97,7 +97,7 @@ jobs:
             echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u Jimmy0016 --password-stdin
             
             # Descargar la imagen explícitamente
-            docker pull ghcr.io/jimmy0016/jimmy:1.0.5
+            docker pull ghcr.io/jimmy0016/jimmy:3.0.0
 
             docker stack rm rugal || true
             sleep 10

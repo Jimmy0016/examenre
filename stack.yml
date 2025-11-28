@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   jimmy:
-    image: ghcr.io/jimmy0016/jimmy:1.0.5
+    image: ghcr.io/jimmy0016/jimmy:3.0.0
     build: .
     deploy:
       replicas: 1

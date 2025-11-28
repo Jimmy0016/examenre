@@ -70,14 +70,14 @@ jobs:
             mkdir -p ~/AUTOMATIZAR
 
     #  Copiar stack.yml al servidor
-    - name: Pasar el stack.yml al servidor
+    - name: Pasar el jimmy.yml al servidor
       uses: appleboy/scp-action@v1
       with:
         host: ${{ secrets.VPS_HOST }}
         port: ${{ secrets.VPS_SSH_PORT }}
         username: ${{ secrets.VPS_USER }}
         password: ${{ secrets.VPS_PASSWORD }}
-        source: "stack.yml"
+        source: "jimmy.yml"
         target: "/home/${{ secrets.VPS_USER }}/examenre"
     
     #  Despliegue en Docker Swarm
@@ -99,10 +99,10 @@ jobs:
             # Descargar la imagen explícitamente
             docker pull ghcr.io/jimmy0016/jimmy:3.0.0
 
-            docker stack rm rugal || true
+            docker stack rm jimmy || true
             sleep 10
             # Despliegue
-            docker stack deploy --with-registry-auth --resolve-image always -c stack.yml rugal
+            docker stack deploy --with-registry-auth --resolve-image always -c jimmy.yml jimmy
             
             echo "Despliegue enviado a Swarm."
             

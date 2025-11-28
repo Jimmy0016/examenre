@@ -54,6 +54,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
+        file: ./jimmy.dockerfile
         push: true
         tags: ghcr.io/jimmy0016/jimmy:3.0.0
       
